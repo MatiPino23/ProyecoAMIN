@@ -5,15 +5,29 @@ import sys
 def fitness(tablero):
     rows, columns= tablero.shape
     count = 0
-    list = []
+    lista = []
     for tab in tablero:
         for i in range(columns-1):
             for j in range(i+1,columns):
                 if abs(tab[i]-tab[j]) == abs(i-j):
                     count += 1
-        list.append(count)
+        lista.append(count)
         count = 0
-    return list
+    return lista
+
+def ruleta (fit):
+    total= sum(fit)
+    probabilidad=[]
+    for i in fit:
+        probabilidad.append(i/total)
+ 
+    ruleta=[]
+    ruleta.append(probabilidad[0])
+
+    for j in range(1, len(probabilidad)):
+        ruleta.append(ruleta[j-1]+probabilidad[j])
+
+    return ruleta
 
 Comenzar= time.time()
 
@@ -35,11 +49,20 @@ for i in range(T_poblacion):
     poblacion[i] = np.arange(0,T_tablero)
     np.random.shuffle(poblacion[i])
 
+
+
+
+
 print(poblacion)
 
 fit=fitness(poblacion)
+rul=ruleta(fit)
+
 
 print(fit)
+print(rul)
+
+
 
 
 
