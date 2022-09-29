@@ -1,7 +1,7 @@
 Introducción
 
 
-La presente tarea 1, correspondiente a la asignatura de Algoritmos Metaheurísticos inspirados en la naturaleza, se desarrolló en el lenguaje de programación Pyhton 3, para la solución del problema de N-Reinas mediante el uso de algotirmos genéticos. Los integrantes responsables de la realización de dicha tarea fueron:
+La presente tarea 1, correspondiente a la asignatura de Algoritmos Metaheurísticos inspirados en la naturaleza, se desarrolló en el lenguaje de programación Python 3, para la solución del problema de N-Reinas mediante el uso de algotirmos genéticos. Los integrantes responsables de la realización de dicha tarea fueron:
 -Matías Pino V.
 -María Suloaga V.
 
