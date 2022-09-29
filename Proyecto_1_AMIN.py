@@ -5,6 +5,8 @@ import sys
 
 Comenzar= time.time()
 
+
+#Puede o no ocurrir, busca 2 indices al azar y los intercambia
 def mutacion(individuo, Prob_mutacion):
     if random.random() < Prob_mutacion:
         n = len(individuo)
@@ -12,6 +14,7 @@ def mutacion(individuo, Prob_mutacion):
         individuo[x[0]], individuo[x[1]] = individuo[x[1]], individuo[x[0]]
     return individuo
 
+#repara que no hallan repiticiones, buscando fila a fila un valor unico por posicion
 def reparar_individuo(individuo):
     n = len(individuo)
     corrector = [0] * n
@@ -30,6 +33,7 @@ def reparar_individuo(individuo):
                     break
     return individuo
 
+#Toma las poblaciones de la ruleta y las cruza desde los indices al azar
 def cruza(individuo1, individuo2, Prob_cruza, Prob_mutacion):
     a, b = individuo1.tolist(), individuo2.tolist()
     if random.random() < Prob_cruza:
@@ -40,6 +44,7 @@ def cruza(individuo1, individuo2, Prob_cruza, Prob_mutacion):
         a, b = mutacion(a, Prob_mutacion), mutacion(b, Prob_mutacion)
         print(a,b)
 
+#recorre columnas y revisa choques y sumas cuantos choques hay por tablero
 def fitness(tablero):
     rows, columns= tablero.shape
     count = 0
@@ -53,6 +58,8 @@ def fitness(tablero):
         count = 0
     return lista
 
+
+#Toma el fitness, y busca mayor fitnes y le da menos proba de aparecer
 def ruleta (fit):
     total= sum(fit)
     probabilidad=[]
@@ -64,7 +71,7 @@ def ruleta (fit):
         ruleta.append(ruleta[j-1]+probabilidad[j])
     return ruleta
 
-
+#solicita los datos
 if len(sys.argv)==7:
     semilla=int(sys.argv[1])
     T_tablero=int(sys.argv[2])
@@ -76,14 +83,14 @@ else:
     print('Error de parametros ingresados')
     sys.exit(0)
 
-np.random.seed(semilla)
+np.random.seed(semilla)#otorga numeros al azar
 
 
 #generar poblacion
 poblacion= np.zeros([T_poblacion ,T_tablero], dtype=int)  
 for i in range(T_poblacion):
     poblacion[i] = np.arange(0,T_tablero)
-    np.random.shuffle(poblacion[i])
+    np.random.shuffle(poblacion[i])#revuelve los numeros en las posiciones 
 
 
 
