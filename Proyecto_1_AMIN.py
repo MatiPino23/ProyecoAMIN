@@ -78,6 +78,8 @@ else:
 
 np.random.seed(semilla)
 
+
+#generar poblacion
 poblacion= np.zeros([T_poblacion ,T_tablero], dtype=int)  
 for i in range(T_poblacion):
     poblacion[i] = np.arange(0,T_tablero)
