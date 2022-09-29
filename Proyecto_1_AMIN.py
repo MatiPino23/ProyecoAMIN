@@ -1,6 +1,44 @@
 import numpy as np 
+import random
 import time
 import sys
+
+Comenzar= time.time()
+
+def mutacion(individuo, Prob_mutacion):
+    if random.random() < Prob_mutacion:
+        n = len(individuo)
+        x = random.choices(range(n), k=2)
+        individuo[x[0]], individuo[x[1]] = individuo[x[1]], individuo[x[0]]
+    return individuo
+
+def reparar_individuo(individuo):
+    n = len(individuo)
+    corrector = [0] * n
+    for i in range(n):
+        corrector[individuo[i]] += 1
+    for i in range(n):
+        if corrector[i] == 2:
+            for j in range(n):
+                if corrector[j] == 0:
+                    for k in range(n):
+                        if individuo[k] == i:
+                            individuo[k] = j
+                            corrector[j] += 1
+                            corrector[i] -= 1
+                            break
+                    break
+    return individuo
+
+def cruza(individuo1, individuo2, Prob_cruza, Prob_mutacion):
+    a, b = individuo1.tolist(), individuo2.tolist()
+    if random.random() < Prob_cruza:
+        n = len(a)
+        x = random.randrange(1, n)
+        a, b = a[:x] + b[x:], b[:x] + a[x:]
+        a, b = reparar_individuo(a), reparar_individuo(b)
+        a, b = mutacion(a, Prob_mutacion), mutacion(b, Prob_mutacion)
+        print(a,b)
 
 def fitness(tablero):
     rows, columns= tablero.shape
@@ -20,16 +58,12 @@ def ruleta (fit):
     probabilidad=[]
     for i in fit:
         probabilidad.append(i/total)
- 
     ruleta=[]
     ruleta.append(probabilidad[0])
-
     for j in range(1, len(probabilidad)):
         ruleta.append(ruleta[j-1]+probabilidad[j])
-
     return ruleta
 
-Comenzar= time.time()
 
 if len(sys.argv)==7:
     semilla=int(sys.argv[1])
@@ -53,14 +87,14 @@ for i in range(T_poblacion):
 
 
 
-print(poblacion)
+#print(poblacion)
 
 fit=fitness(poblacion)
 rul=ruleta(fit)
+cruza(poblacion[0], poblacion[1], Prob_cruza, Prob_mutacion)
 
-
-print(fit)
-print(rul)
+#print(fit)
+#print(rul)
 
 
 
