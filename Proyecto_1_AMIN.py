@@ -95,15 +95,16 @@ for i in range(T_poblacion):
 
 
 
-
-#print(poblacion)
+print('Ubicacion de las reinas en el tablero')
+print(poblacion)
 
 fit=fitness(poblacion)
 rul=ruleta(fit)
 cruza(poblacion[0], poblacion[1], Prob_cruza, Prob_mutacion)
-
-#print(fit)
-#print(rul)
+print('Cantidad de choques por tablero')
+print(fit)
+print('Porcentajes que da la ruleta por tablero')
+print(rul)
 
 
 
