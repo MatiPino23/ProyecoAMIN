@@ -32,12 +32,12 @@ pip install numpy
 Luego de lo anterior, se debe ejecutar la aplicación desde la terminal utilizando el comando, teniendo en cuenta la siguiente nomenclatura:
 
 ```
-- "a" corresponde a la semilla. 
-*"b" es el tamaño del tablero.
-*"c" como la cantidad de tableros.
-*"d" corresponde a la probabilidad de cruza. 
-*"e" la probabilidad de mutación. 
-*"f" el número de iteración.
+"a" corresponde a la semilla. 
+"b" es el tamaño del tablero.
+"c" como la cantidad de tableros.
+"d" corresponde a la probabilidad de cruza. 
+"e" la probabilidad de mutación. 
+"f" el número de iteración.
 ```
 
 ***
