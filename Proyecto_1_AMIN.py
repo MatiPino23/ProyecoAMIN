@@ -1,5 +1,4 @@
-import numpy as np 
-import random
+import numpy as np
 import time
 import sys
 
@@ -8,11 +7,12 @@ Comenzar= time.time()
 
 #Puede o no ocurrir, busca 2 indices al azar y los intercambia
 def mutacion(individuo, Prob_mutacion):
-    if random.random() < Prob_mutacion:
+    if np.random.rand() < Prob_mutacion:
         n = len(individuo)
-        x = random.choices(range(n), k=2)
+        x = np.random.randint(n, size=2)
         individuo[x[0]], individuo[x[1]] = individuo[x[1]], individuo[x[0]]
     return individuo
+
 
 #repara que no hallan repiticiones, buscando fila a fila un valor unico por posicion
 def reparar_individuo(individuo):
