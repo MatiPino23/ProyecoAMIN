@@ -92,24 +92,42 @@ np.random.seed(semilla)#otorga numeros al azar
 
 
 #generar poblacion
-poblacion= np.zeros([T_poblacion ,T_tablero], dtype=int)  
+poblacion= np.zeros([T_poblacion ,T_tablero], dtype=int)
+hijitos = np.zeros([1, T_tablero], dtype=int)
+hijitos = np.delete(hijitos, 0, 0)
 for i in range(T_poblacion):
     poblacion[i] = np.arange(0,T_tablero)
-    np.random.shuffle(poblacion[i])#revuelve los numeros en las posiciones 
-
-
-
-
-print('Ubicacion de las reinas en el tablero')
-print(poblacion)
-
+    np.random.shuffle(poblacion[i]) #revuelve los numeros en las posiciones 
 fit=fitness(poblacion)
-rul=ruleta(fit)
-cruza(poblacion[0], poblacion[1], Prob_cruza, Prob_mutacion)
-print('Cantidad de choques por tablero')
-print(fit)
-print('Porcentajes que da la ruleta por tablero')
-print(rul)
+while 0 not in fit and N_iteracion > 0:
+    rul=ruleta(fit)
+    while len(hijitos)/T_tablero != len(poblacion):
+        while True:
+            primerValor, segundoValor = np.random.randint(T_poblacion, size=2)
+            if primerValor != segundoValor:
+                break
+        primero, segundo = cruza(poblacion[primerValor], poblacion[segundoValor], Prob_cruza, Prob_mutacion)
+        if len(hijitos)/T_tablero + 2 <= len(poblacion):
+            hijitos = np.append(hijitos, primero)
+            hijitos = np.append(hijitos, segundo)
+        else:
+            if np.random.rand() < 0.5:
+                hijitos = np.append(hijitos, primero)
+            else:
+                hijitos = np.append(hijitos, segundo)
+    N_iteracion -= 1
+    hijitos = np.reshape(hijitos, (T_poblacion, T_tablero))
+    poblacion = hijitos
+    fit=fitness(poblacion)
+    hijitos = np.delete(hijitos, np.arange(len(hijitos)), 0)
+if 0 in fit:
+    fit = np.array(fit)
+    lugar = np.where(fit == 0)
+    print("poblacion: ", poblacion[lugar[0][0]])
+    print("fitness: ", fit[lugar[0][0]])
+else:
+    print("No se encontro solucion")
+
 
 
 
