@@ -61,10 +61,15 @@ def fitness(tablero):
 
 #Toma el fitness, y busca mayor fitnes y le da menos proba de aparecer
 def ruleta (fit):
-    total= sum(fit)
     probabilidad=[]
     for i in fit:
-        probabilidad.append(i/total)
+        if i != 0:
+            probabilidad.append(1/i)
+        else:
+            probabilidad.append(0)
+    total= sum(probabilidad)
+    for i in range(len(probabilidad)):
+        probabilidad[i] /= total
     ruleta=[]
     ruleta.append(probabilidad[0])
     for j in range(1, len(probabilidad)):
