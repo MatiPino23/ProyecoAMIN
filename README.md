@@ -46,4 +46,10 @@ python Nombre_Aplicación.py a b c d e f
 ```
 ***
 
+***
+```
+Caso de prueba 8 10 100 0.95 0.2 100 
+```
+***
+
 
