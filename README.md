@@ -39,16 +39,15 @@ Luego de lo anterior, se debe ejecutar la aplicación desde la terminal utilizan
 "e" la probabilidad de mutación. 
 "f" el número de iteración.
 ```
-
-***
 ```
 python Nombre_Aplicación.py a b c d e f 
 ```
-***
+
 
 ***
+## Caso de prueba
 ```
-Caso de prueba 8 10 100 0.95 0.2 100 
+python .\Proyecto_1_AMIN.py 8 10 100 0.95 0.2 100 
 ```
 ***
 
