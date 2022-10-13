@@ -36,13 +36,13 @@ def reparar_individuo(individuo):
 #Toma las poblaciones de la ruleta y las cruza desde los indices al azar
 def cruza(individuo1, individuo2, Prob_cruza, Prob_mutacion):
     a, b = individuo1.tolist(), individuo2.tolist()
-    if random.random() < Prob_cruza:
+    if np.random.rand() < Prob_cruza:
         n = len(a)
-        x = random.randrange(1, n)
+        x = np.random.randint(1, n)
         a, b = a[:x] + b[x:], b[:x] + a[x:]
         a, b = reparar_individuo(a), reparar_individuo(b)
         a, b = mutacion(a, Prob_mutacion), mutacion(b, Prob_mutacion)
-        print(a,b)
+    return a, b
 
 #recorre columnas y revisa choques y sumas cuantos choques hay por tablero
 def fitness(tablero):
