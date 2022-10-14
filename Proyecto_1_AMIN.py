@@ -89,7 +89,16 @@ else:
     sys.exit(0)
 
 np.random.seed(semilla)#otorga numeros al azar
-
+print("Los valores ingresados son los siguientes:")
+print("Semilla:",semilla)
+print("Tamaño tablero:",T_tablero)
+print("Tamaño poblacion:",T_poblacion)
+print("Probabilidad de cruza:",Prob_cruza)
+print("Probabilidad de mutacion:",Prob_mutacion)
+print("Numero de iteraciones:",N_iteracion)
+print("")
+print("")
+print("Resultados:")
 
 #generar poblacion
 poblacion= np.zeros([T_poblacion ,T_tablero], dtype=int)
